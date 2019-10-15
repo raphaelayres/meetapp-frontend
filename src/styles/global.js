@@ -55,4 +55,9 @@ export default createGlobalStyle`
     background:#BF253F !important;
   }
 
+  .Toastify__toast--success
+  {
+    background:#28A869 !important;
+  }
+
 `;

@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { darken } from "polished";
 
 export const Container = styled.div`
-  background: #000000;
+  background: rgba(0, 0, 0, 0.3);
   padding: 0 30px;
 `;
 
 export const Content = styled.div`
-  height: 64px;
+  height: 92px;
   width: 900px;
   margin: 0 auto;
   display: flex;
@@ -41,6 +41,7 @@ export const Content = styled.div`
       padding: 0 21.5px;
       transition: background 0.2s;
       font-size: 16px;
+      font-weight: bold;
 
       &:hover {
         background: ${darken(0.03, "#F94D6A")};
@@ -55,13 +56,12 @@ export const Profile = styled.div`
 
   div {
     text-align: right;
-    margin-right: 10px;
+    margin-right: 30px;
 
     strong {
       display: block;
       color: #fff;
       font-size: 14px;
-      font-weight: normal;
     }
     a {
       display: block;

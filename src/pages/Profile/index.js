@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Input } from "@rocketseat/unform";
+import { MdAddCircleOutline } from "react-icons/md";
 
 import { Container } from "./styles";
 import { updateProfileRequest } from "~/store/modules/user/actions";
-import AvatarInput from "./AvatarInput";
+
 import { signOut } from "~/store/modules/auth/actions";
 
 export default function Profile() {
@@ -23,15 +24,10 @@ export default function Profile() {
   return (
     <Container>
       <Form initialData={profile} onSubmit={handleSubmit}>
-        <AvatarInput name="avatar" />
         <Input type="text" name="name" placeholder="Nome completo" />
         <Input type="email" name="email" placeholder="Seu endereço e-mail" />
         <hr />
-        <Input
-          type="password"
-          name="oldPassword"
-          placeholder="Sua senha atual"
-        />
+        <Input type="password" name="oldPassword" placeholder="Senha atual" />
         <Input type="password" name="password" placeholder="Nova senha" />
         <Input
           type="password"
@@ -39,12 +35,12 @@ export default function Profile() {
           placeholder="Confirmação de senha"
         />
 
-        <button type="submit">Atualizar perfil</button>
+        <button type="submit">
+          <span>
+            <MdAddCircleOutline size={20} color="#fff" /> Salvar perfil
+          </span>
+        </button>
       </Form>
-
-      <button type="button" onClick={() => handleSignOut()}>
-        Sair do Meetapp
-      </button>
     </Container>
   );
 }

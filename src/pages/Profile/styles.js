@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { darken } from "polished";
 
 export const Container = styled.div`
-  max-width: 370px;
-  margin: 30px auto;
+  max-width: 940px;
+  margin: 50px auto;
 
   form {
     display: flex;
@@ -11,10 +11,10 @@ export const Container = styled.div`
     margin-top: 30px;
 
     input {
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.2);
       border: 0;
       border-radius: 4px;
-      height: 44px;
+      height: 50px;
       padding: 0 15px;
       color: #fff;
       margin: 0 0 10px;
@@ -22,12 +22,6 @@ export const Container = styled.div`
       &::placeholder {
         color: rgba(255, 255, 255, 0.7);
       }
-    }
-
-    span {
-      color: #fb6f91;
-      align-self: flex-start;
-      margin: 0 0 10px;
     }
 
     hr {
@@ -41,42 +35,28 @@ export const Container = styled.div`
       background: #f94d6a;
       border: 0;
       border-radius: 4px;
-      height: 44px;
-      color: #fff;
+      height: 42px;
+
       font-weight: bold;
-      margin: 5px 0 0;
+      margin: 15px 0 0 auto;
       transition: background 0.2s;
+      width: 162px;
+      font-size: 16px;
+
+      span {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        justify-content: center;
+      }
+
+      svg {
+        margin-right: 10px;
+      }
 
       &:hover {
         background: ${darken(0.03, "#F94D6A")};
       }
-    }
-
-    a {
-      color: #fff;
-      margin-top: 15px;
-      font-size: 16px;
-      opacity: 0.8;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
-
-  > button {
-    width: 100%;
-    background: #f64c75;
-    border: 0;
-    border-radius: 4px;
-    height: 44px;
-    color: #fff;
-    font-weight: bold;
-    margin: 10px 0 0;
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${darken(0.08, "#f64c75")};
     }
   }
 `;
