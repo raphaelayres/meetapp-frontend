@@ -38,6 +38,8 @@ export default createGlobalStyle`
 
   button{
     cursor:pointer;
+    background:none;
+    border:none;
   }
 
   .Toastify__toast

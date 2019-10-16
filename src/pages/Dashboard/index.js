@@ -1,9 +1,11 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Container, Meetup } from "./styles";
 import { MdAddCircleOutline, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import api from "~/services/api";
+import { format, parseISO } from "date-fns";
+import pt from "date-fns/locale/pt";
 
 export default function Dashboard() {
   const [meetups, setMeetups] = useState([]);
@@ -12,9 +14,19 @@ export default function Dashboard() {
     async function loadMeetups() {
       const response = await api.get("mymeetups");
 
-      console.log(response.data);
-
-      const data = response.data.map(meetup => meetup);
+      const data = response.data.map(meetup => {
+        const datetimeFormatted = format(
+          parseISO(meetup.datetime),
+          "d 'de' MMMM, 'às' HH'h'",
+          {
+            locale: pt
+          }
+        );
+        return {
+          ...meetup,
+          datetimeFormatted
+        };
+      });
 
       setMeetups(data);
     }
@@ -40,11 +52,11 @@ export default function Dashboard() {
           <Meetup past key={meetup.id}>
             <strong>{meetup.title}</strong>
             <div>
-              <span>{meetup.datetime}</span>
-              <Link to="/meetups">
-                <a type="button" onClick={() => {}}>
-                  <MdChevronRight size={20} color="#fff" />
-                </a>
+              <span>{meetup.datetimeFormatted}</span>
+              <Link to={`/meetup/${meetup.id}`}>
+                <button type="button">
+                  <MdChevronRight size={24} color="#fff" />
+                </button>
               </Link>
             </div>
           </Meetup>
