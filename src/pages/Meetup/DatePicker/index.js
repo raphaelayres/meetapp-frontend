@@ -10,7 +10,7 @@ import { parseISO } from "date-fns";
 
 registerLocale("pt", pt);
 
-export default function DatePicker({ name, value }) {
+export default function DatePicker({ name }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
