@@ -6,7 +6,7 @@ import { Container } from "./styles";
 import { MdCameraAlt } from "react-icons/md";
 
 export default function BannerInput() {
-  const { defaultValue, registerField } = useField("file");
+  const { defaultValue, registerField } = useField("banner");
 
   const [file, setFile] = useState(defaultValue);
 
@@ -15,7 +15,7 @@ export default function BannerInput() {
   useEffect(() => {
     if (ref.current) {
       registerField({
-        name: "file",
+        name: "banner",
         ref: ref.current,
         path: "dataset.file"
       });
@@ -29,9 +29,11 @@ export default function BannerInput() {
 
     const response = await api.post("files", data);
 
-    const { banner } = response.data;
+    const { file } = response.data;
 
-    setFile(banner);
+    console.log(file);
+
+    setFile(file);
   }
   return (
     <Container>
