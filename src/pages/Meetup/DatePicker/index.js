@@ -1,21 +1,20 @@
 import React, { useRef, useEffect, useState } from "react";
-import ReactDatePicker, {
-  registerLocale,
-  setDefaultLocale
-} from "react-datepicker";
+import ReactDatePicker, { registerLocale } from "react-datepicker";
 
 import pt from "date-fns/locale/pt";
 
 import { useField } from "@rocketseat/unform";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { parseISO } from "date-fns";
 
 registerLocale("pt", pt);
 
-export default function DatePicker({ name }) {
+export default function DatePicker({ name, value }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [selected, setSelected] = useState(defaultValue);
+
+  const [startDate, setStartDate] = useState(null);
 
   useEffect(() => {
     registerField({
@@ -28,12 +27,18 @@ export default function DatePicker({ name }) {
     });
   }, [ref.current, fieldName]); // eslint-disable-line
 
+  useEffect(() => {
+    if (defaultValue) {
+      setStartDate(parseISO(defaultValue));
+    }
+  }, [defaultValue]);
+
   return (
     <>
       <ReactDatePicker
         name={fieldName}
-        selected={selected}
-        onChange={date => setSelected(date)}
+        selected={startDate}
+        onChange={datetime => setStartDate(datetime)}
         ref={ref}
         placeholderText="Data do meetup"
         locale="pt"

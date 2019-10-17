@@ -35,8 +35,6 @@ export default function Meetup({ match }) {
         datetimeFormatted
       };
 
-      console.log(meetup.banner.path);
-
       setMeetup(meetup);
     }
     loadMeetup();

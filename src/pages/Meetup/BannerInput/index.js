@@ -10,6 +10,8 @@ export default function BannerInput() {
 
   const [file, setFile] = useState(defaultValue);
 
+  console.log("file", file);
+
   const ref = useRef();
 
   useEffect(() => {
@@ -31,15 +33,14 @@ export default function BannerInput() {
 
     const { file } = response.data;
 
-    console.log(file);
-
     setFile(file);
   }
+
   return (
     <Container>
       <label htmlFor="banner">
         {file ? (
-          <img src={file.path} alt="banner" />
+          <img src={file} alt="banner" />
         ) : (
           <div>
             <MdCameraAlt size="54" color="rgba(255,255,255,0.3)" /> <br />
