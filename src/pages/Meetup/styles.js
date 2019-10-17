@@ -17,6 +17,7 @@ export const Container = styled.div`
     h1 {
       font-size: 32px;
       color: #fff;
+      text-transform: capitalize;
     }
 
     button.btn-cancel {

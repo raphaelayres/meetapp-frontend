@@ -37,7 +37,7 @@ export default function Dashboard() {
     <Container>
       <header>
         <h1>Meus meetups</h1>
-        <Link to="/meetups">
+        <Link to="/meetup/new">
           <button type="button" onClick={() => {}}>
             <span>
               <MdAddCircleOutline size={20} color="#fff" />
