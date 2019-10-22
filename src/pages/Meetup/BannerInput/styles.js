@@ -5,6 +5,10 @@ export const Container = styled.div`
   margin-bottom: 15px;
   width: 100%;
 
+  input {
+    display: none;
+  }
+
   label {
     cursor: pointer;
     display: flex;
@@ -23,13 +27,8 @@ export const Container = styled.div`
     }
 
     img {
-      width: auto;
-      height: 100%;
+      width: 100%;
       object-fit: cover;
-    }
-
-    input {
-      display: none;
     }
 
     div {

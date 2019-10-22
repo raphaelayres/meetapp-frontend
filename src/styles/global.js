@@ -74,6 +74,19 @@ export default createGlobalStyle`
       margin: 5px 0 15px;
     }
 
+    > span {
+      color: #fb6f91;
+      align-self: flex-start;
+      margin: 0 0 10px;
+    }
+
+    > div > span{
+      color: #fb6f91;
+      align-self: flex-start;
+      margin: 10px 0 0 0;
+      display:flex;
+    }
+
     button {
       background: #f94d6a;
       border: 0;

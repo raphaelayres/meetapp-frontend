@@ -1,23 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useField } from "@rocketseat/unform";
+import { useField, Input } from "@rocketseat/unform";
+import { toast } from "react-toastify";
 import api from "~/services/api";
 
 import { Container } from "./styles";
 import { MdCameraAlt } from "react-icons/md";
 
 export default function BannerInput() {
-  const { defaultValue, registerField } = useField("banner");
+  const { defaultValue, registerField, fieldName } = useField("banner");
 
   const [file, setFile] = useState(defaultValue);
-
-  console.log("file", file);
 
   const ref = useRef();
 
   useEffect(() => {
     if (ref.current) {
       registerField({
-        name: "banner",
+        name: fieldName,
         ref: ref.current,
         path: "dataset.file"
       });
@@ -29,18 +28,25 @@ export default function BannerInput() {
 
     data.append("file", e.target.files[0]);
 
-    const response = await api.post("files", data);
+    await api
+      .post("files", data)
+      .then(response => {
+        const { file } = response.data;
 
-    const { file } = response.data;
-
-    setFile(file);
+        setFile(file);
+      })
+      .catch(err => {
+        toast.error(
+          "Erro no upload do banner! Formatos permitidos: jpg, jpeg, gif ou png e tamanho máximo de 5mb"
+        );
+      });
   }
 
   return (
     <Container>
-      <label htmlFor="banner">
+      <label htmlFor={fieldName}>
         {file ? (
-          <img src={file} alt="banner" />
+          <img src={file.path} alt="banner" />
         ) : (
           <div>
             <MdCameraAlt size="54" color="rgba(255,255,255,0.3)" /> <br />
@@ -50,12 +56,18 @@ export default function BannerInput() {
         <input
           type="file"
           id="banner"
+          name={fieldName}
           accept="image/*"
-          data-file={file}
           onChange={handleChange}
           ref={ref}
         />
       </label>
+      <Input
+        type="hidden"
+        id="file_id"
+        name="file_id"
+        value={file ? file.id : ""}
+      />
     </Container>
   );
 }

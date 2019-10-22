@@ -25,7 +25,7 @@ export const Container = styled.div`
       height: 42px;
 
       font-weight: bold;
-      margin: 15px 0 0 auto;
+      margin: 0 0 0 auto;
       transition: background 0.2s;
       width: 162px;
       font-size: 16px;

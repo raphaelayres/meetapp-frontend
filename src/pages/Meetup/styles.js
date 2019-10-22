@@ -67,8 +67,10 @@ export const Container = styled.div`
 `;
 
 export const Banner = styled.img`
-  width: 100%;
   margin-top: 47px;
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
 `;
 
 export const Description = styled.div`
