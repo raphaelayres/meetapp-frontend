@@ -34,6 +34,12 @@ export const Container = styled.div`
     div {
       color: rgba(255, 255, 255, 0.3);
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    div > svg {
+      width: 100%;
     }
   }
 `;
