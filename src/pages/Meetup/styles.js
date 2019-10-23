@@ -8,16 +8,29 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 50px 0;
 
+  @media (max-width: 960px) {
+    width: 90% !important;
+  }
+
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex: 1;
 
+    @media (max-width: 960px) {
+      flex-direction: column;
+    }
+
     h1 {
       font-size: 32px;
       color: #fff;
       text-transform: capitalize;
+
+      @media (max-width: 960px) {
+        text-align: center;
+        margin-bottom: 15px;
+      }
     }
 
     button.btn-cancel {

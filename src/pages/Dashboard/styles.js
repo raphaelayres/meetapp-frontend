@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { darken } from "polished";
 
 export const Container = styled.div`
+  @media (max-width: 960px) {
+    width: 90% !important;
+  }
+
   display: flex;
   flex-direction: column;
   max-width: 940px;
@@ -14,9 +18,17 @@ export const Container = styled.div`
     align-items: center;
     flex: 1;
 
+    @media (max-width: 960px) {
+      flex-direction: column;
+    }
+
     h1 {
       font-size: 32px;
       color: #fff;
+
+      @media (max-width: 960px) {
+        margin-bottom: 15px;
+      }
     }
 
     button {
@@ -65,11 +77,12 @@ export const Meetup = styled.li`
   display:flex;
   align-items:center;
 
-  /* opacity: ${props => (props.past ? 0.6 : 1)}; */
+  @media (max-width: 960px) {
+      flex-direction: column;
+    }
 
   strong {
     display: block;
-    /* color: ${props => (props.available ? "#999" : "#7159c1")}; */
     color:#fff;
     font-size: 18px;
   }
