@@ -33,8 +33,10 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-props-no-spreading": [
+      "error",
       {
-        html: "ignore"
+        html: "ignore",
+        exceptions: []
       }
     ]
   },

@@ -71,6 +71,7 @@ export const Banner = styled.img`
   height: 300px;
   width: 100%;
   object-fit: cover;
+  display: flex;
 `;
 
 export const Description = styled.div`

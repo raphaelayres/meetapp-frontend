@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { Container, Meetup } from "./styles";
 import { MdAddCircleOutline, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-import api from "~/services/api";
 import { format, parseISO } from "date-fns";
 import pt from "date-fns/locale/pt";
+import api from "~/services/api";
+import { Container, Meetup } from "./styles";
 import PageLoading from "~/components/PageLoading";
 
 export default function Dashboard() {

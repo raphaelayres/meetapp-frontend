@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { Container } from "./styles";
 import { MdAddCircleOutline } from "react-icons/md";
-import api from "~/services/api";
 import { format, parseISO } from "date-fns";
 import pt from "date-fns/locale/pt";
 import { Form, Input } from "@rocketseat/unform";
 import * as Yup from "yup";
+import api from "~/services/api";
+import { Container } from "./styles";
 import BannerInput from "../BannerInput";
 import DatePicker from "../DatePicker";
 import {
@@ -31,7 +31,7 @@ export default function MeetupForm({ match }) {
       if (match.params.id) {
         const response = await api.get(`mymeetups/${match.params.id}`);
 
-        const data = response.data;
+        const { data } = response;
 
         const datetimeFormatted = format(
           parseISO(data.datetime),

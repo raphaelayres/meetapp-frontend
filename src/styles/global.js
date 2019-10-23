@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { darken } from "polished";
 
-import "react-perfect-scrollbar/dist/css/styles.css";
 import "react-toastify/dist/ReactToastify.css";
 
 export default createGlobalStyle`
@@ -41,6 +40,20 @@ export default createGlobalStyle`
     cursor:pointer;
     background:none;
     border:none;
+  }
+
+  button:disabled{
+    cursor:not-allowed;
+    opacity:0.5;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    opacity:0.5;
+  }
+
+  .disabled:active{
+    pointer-events: none;
   }
 
   form {

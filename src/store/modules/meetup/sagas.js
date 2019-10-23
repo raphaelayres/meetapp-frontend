@@ -14,9 +14,9 @@ export function* createMeetup({ payload }) {
     const meetup = payload.data;
     const response = yield call(api.post, "mymeetups", meetup);
 
-    toast.success("Meetup criado com sucesso!");
-
     yield put(createMeetupSuccess(response.data));
+
+    yield toast.success("Meetup criado com sucesso!");
 
     history.push("/");
   } catch (error) {
@@ -31,9 +31,9 @@ export function* updateMeetup({ payload }) {
     const meetup_id = payload.id;
     const response = yield call(api.put, `mymeetups/${meetup_id}`, meetup);
 
-    toast.success("Meetup atualizado com sucesso!");
-
     yield put(updateMeetupSuccess(response.data));
+
+    toast.success("Meetup atualizado com sucesso!");
 
     history.push("/");
   } catch (error) {
@@ -42,7 +42,24 @@ export function* updateMeetup({ payload }) {
   }
 }
 
+export function* cancelMeetup({ payload }) {
+  try {
+    const meetup = payload.data;
+    const response = yield call(api.delete, `mymeetups/${meetup.id}`, meetup);
+
+    toast.success("Meetup cancelado com sucesso!");
+
+    yield put(updateMeetupSuccess(response.data));
+
+    history.push("/");
+  } catch (error) {
+    yield put(updateMeetupFailer());
+    toast.error("Erro ao cancelar, tente novamente mais tarde!");
+  }
+}
+
 export default all([
   takeLatest("@meetup/CREATE_MEETUP_REQUEST", createMeetup),
-  takeLatest("@meetup/UPDATE_MEETUP_REQUEST", updateMeetup)
+  takeLatest("@meetup/UPDATE_MEETUP_REQUEST", updateMeetup),
+  takeLatest("@meetup/CANCEL_MEETUP_REQUEST", cancelMeetup)
 ]);

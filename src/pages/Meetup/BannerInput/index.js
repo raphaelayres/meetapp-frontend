@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "@rocketseat/unform";
 import { toast } from "react-toastify";
+import { MdCameraAlt } from "react-icons/md";
 import api from "~/services/api";
 
 import { Container } from "./styles";
-import { MdCameraAlt } from "react-icons/md";
 
 export default function BannerInput({ banner }) {
   const [file, setFile] = useState();

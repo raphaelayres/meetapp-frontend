@@ -5,7 +5,7 @@ import logo from "~/assets/logo.svg";
 
 import { Container, Loading, Logo } from "./styles";
 
-export default function PageLoading({ loading }) {
+export default function PageLoading({ loading = false }) {
   const GlobalStyle = createGlobalStyle`
     body {
       overflow-y:${props => (props.scroll ? "scroll" : "hidden")};

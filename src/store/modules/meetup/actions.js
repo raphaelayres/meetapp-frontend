@@ -33,3 +33,21 @@ export function updateMeetupFailer() {
     type: "@meetup/UPDATE_MEETUP_FAILER"
   };
 }
+
+export function cancelMeetupRequest(data, id) {
+  return {
+    type: "@meetup/CANCEL_MEETUP_REQUEST",
+    payload: { data }
+  };
+}
+export function cancelMeetupSuccess(meetup) {
+  return {
+    type: "@meetup/CANCEL_MEETUP_SUCCESS",
+    payload: { meetup }
+  };
+}
+export function cancelMeetupFailer() {
+  return {
+    type: "@meetup/CANCEL_MEETUP_FAILER"
+  };
+}
