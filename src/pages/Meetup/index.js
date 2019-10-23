@@ -11,9 +11,11 @@ import { MdDeleteForever, MdEdit, MdDateRange, MdPlace } from "react-icons/md";
 import api from "~/services/api";
 import { format, parseISO } from "date-fns";
 import pt from "date-fns/locale/pt";
+import Modal from "~/components/Modal";
 
 export default function Meetup({ match }) {
   const [meetup, setMeetup] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     async function loadMeetup() {
@@ -42,6 +44,7 @@ export default function Meetup({ match }) {
 
   return (
     <Container>
+      <Modal open={open} setOpen={setOpen} />
       <header>
         <h1>{meetup.title}</h1>
 
@@ -53,7 +56,11 @@ export default function Meetup({ match }) {
             </span>
           </button>
 
-          <button class="btn-cancel" type="button" onClick={() => {}}>
+          <button
+            class="btn-cancel"
+            type="button"
+            onClick={() => setOpen(true)}
+          >
             <span>
               <MdDeleteForever size={20} color="#fff" />
               Cancelar
