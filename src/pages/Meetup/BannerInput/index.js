@@ -1,27 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useField, Input } from "@rocketseat/unform";
+import React, { useState, useEffect } from "react";
+import { Input } from "@rocketseat/unform";
 import { toast } from "react-toastify";
 import api from "~/services/api";
 
 import { Container } from "./styles";
 import { MdCameraAlt } from "react-icons/md";
 
-export default function BannerInput() {
-  const { defaultValue, registerField, fieldName } = useField("banner");
-
-  const [file, setFile] = useState(defaultValue);
-
-  const ref = useRef();
+export default function BannerInput({ banner }) {
+  const [file, setFile] = useState();
 
   useEffect(() => {
-    if (ref.current) {
-      registerField({
-        name: fieldName,
-        ref: ref.current,
-        path: "dataset.file"
-      });
-    }
-  }, [ref]); // eslint-disable-line
+    setFile(banner);
+    console.log("aki", banner);
+  }, [banner]);
 
   async function handleChange(e) {
     const data = new FormData();
@@ -44,7 +35,7 @@ export default function BannerInput() {
 
   return (
     <Container>
-      <label htmlFor={fieldName}>
+      <label htmlFor="banner">
         {file ? (
           <img src={file.path} alt="banner" />
         ) : (
@@ -56,10 +47,9 @@ export default function BannerInput() {
         <input
           type="file"
           id="banner"
-          name={fieldName}
+          name="banner"
           accept="image/*"
           onChange={handleChange}
-          ref={ref}
         />
       </label>
       <Input

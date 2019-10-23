@@ -1,6 +1,7 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
 import { toast } from "react-toastify";
 import api from "~/services/api";
+import history from "~/services/history";
 import {
   createMeetupSuccess,
   createMeetupFailer,
@@ -16,6 +17,8 @@ export function* createMeetup({ payload }) {
     toast.success("Meetup criado com sucesso!");
 
     yield put(createMeetupSuccess(response.data));
+
+    history.push("/");
   } catch (error) {
     yield put(createMeetupFailer());
     toast.error("Erro ao criar meetup, confira seus dados!");
@@ -24,18 +27,15 @@ export function* createMeetup({ payload }) {
 
 export function* updateMeetup({ payload }) {
   try {
-    const { name, email, ...rest } = payload.data;
-
-    const meetup = {
-      name,
-      email,
-      ...(rest.oldPassword ? rest : {})
-    };
-    const response = yield call(api.put, "mymeetups", meetup);
+    const meetup = payload.data;
+    const meetup_id = payload.id;
+    const response = yield call(api.put, `mymeetups/${meetup_id}`, meetup);
 
     toast.success("Meetup atualizado com sucesso!");
 
     yield put(updateMeetupSuccess(response.data));
+
+    history.push("/");
   } catch (error) {
     yield put(updateMeetupFailer());
     toast.error("Erro ao atualizar meetup, confira seus dados!");

@@ -10,7 +10,10 @@ import { Form, Input } from "@rocketseat/unform";
 import * as Yup from "yup";
 import BannerInput from "../BannerInput";
 import DatePicker from "../DatePicker";
-import { createMeetupRequest } from "~/store/modules/meetup/actions";
+import {
+  createMeetupRequest,
+  updateMeetupRequest
+} from "~/store/modules/meetup/actions";
 
 const schema = Yup.object().shape({
   file_id: Yup.string().required("O banner é obrigatório"),
@@ -40,7 +43,6 @@ export default function MeetupForm({ match }) {
 
         const meetup = {
           ...data,
-          banner: data.banner.path,
           datetimeFormatted
         };
 
@@ -55,13 +57,17 @@ export default function MeetupForm({ match }) {
   const dispatch = useDispatch();
 
   function handleSubmit(data) {
-    dispatch(createMeetupRequest(data));
+    if (meetup) {
+      dispatch(updateMeetupRequest(data, match.params.id));
+    } else {
+      dispatch(createMeetupRequest(data));
+    }
   }
 
   return (
     <Container>
       <Form initialData={meetup} schema={schema} onSubmit={handleSubmit}>
-        <BannerInput name="banner" />
+        <BannerInput name="banner" banner={meetup.banner} />
         <Input type="text" name="title" placeholder="Título do Meetup" />
         <Input
           multiline

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import {
   Container,
@@ -37,6 +38,8 @@ export default function Meetup({ match }) {
         datetimeFormatted
       };
 
+      console.log(meetup);
+
       setMeetup(meetup);
     }
     loadMeetup();
@@ -49,15 +52,17 @@ export default function Meetup({ match }) {
         <h1>{meetup.title}</h1>
 
         <div>
-          <button class="btn-edit" type="button" onClick={() => {}}>
-            <span>
-              <MdEdit size={20} color="#fff" />
-              Editar
-            </span>
-          </button>
+          <Link to={`/meetup/${meetup.id}/edit`}>
+            <button className="btn-edit" type="button">
+              <span>
+                <MdEdit size={20} color="#fff" />
+                Editar
+              </span>
+            </button>
+          </Link>
 
           <button
-            class="btn-cancel"
+            className="btn-cancel"
             type="button"
             onClick={() => setOpen(true)}
           >
@@ -73,7 +78,7 @@ export default function Meetup({ match }) {
         <Banner src={meetup.banner_url} alt="banner" />
 
         <Description>{meetup.description}</Description>
-        <div class="footer">
+        <div className="footer">
           <Datetime>
             <MdDateRange size={20} /> {meetup.datetimeFormatted}
           </Datetime>

@@ -16,10 +16,10 @@ export function createMeetupFailer() {
   };
 }
 
-export function updateMeetupRequest(data) {
+export function updateMeetupRequest(data, id) {
   return {
     type: "@meetup/UPDATE_MEETUP_REQUEST",
-    payload: { data }
+    payload: { data, id }
   };
 }
 export function updateMeetupSuccess(meetup) {
