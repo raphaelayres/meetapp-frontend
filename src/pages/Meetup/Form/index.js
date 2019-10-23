@@ -57,7 +57,7 @@ export default function MeetupForm({ match }) {
   const dispatch = useDispatch();
 
   function handleSubmit(data) {
-    if (meetup) {
+    if (match.params.id) {
       dispatch(updateMeetupRequest(data, match.params.id));
     } else {
       dispatch(createMeetupRequest(data));

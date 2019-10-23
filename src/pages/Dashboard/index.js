@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 import api from "~/services/api";
 import { format, parseISO } from "date-fns";
 import pt from "date-fns/locale/pt";
+import PageLoading from "~/components/PageLoading";
 
 export default function Dashboard() {
-  const [meetups, setMeetups] = useState([]);
+  const [meetups, setMeetups] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadMeetups() {
@@ -29,12 +31,14 @@ export default function Dashboard() {
       });
 
       setMeetups(data);
+      setLoading(false);
     }
     loadMeetups();
   }, []);
 
   return (
     <Container>
+      <PageLoading loading={loading} />
       <header>
         <h1>Meus meetups</h1>
         <Link to="/meetup/new">
@@ -48,19 +52,20 @@ export default function Dashboard() {
       </header>
 
       <ul>
-        {meetups.map(meetup => (
-          <Meetup past key={meetup.id}>
-            <strong>{meetup.title}</strong>
-            <div>
-              <span>{meetup.datetimeFormatted}</span>
-              <Link to={`/meetup/${meetup.id}`}>
-                <button type="button">
-                  <MdChevronRight size={24} color="#fff" />
-                </button>
-              </Link>
-            </div>
-          </Meetup>
-        ))}
+        {meetups &&
+          meetups.map(meetup => (
+            <Meetup past key={meetup.id}>
+              <strong>{meetup.title}</strong>
+              <div>
+                <span>{meetup.datetimeFormatted}</span>
+                <Link to={`/meetup/${meetup.id}`}>
+                  <button type="button">
+                    <MdChevronRight size={24} color="#fff" />
+                  </button>
+                </Link>
+              </div>
+            </Meetup>
+          ))}
       </ul>
     </Container>
   );

@@ -13,10 +13,12 @@ import api from "~/services/api";
 import { format, parseISO } from "date-fns";
 import pt from "date-fns/locale/pt";
 import Modal from "~/components/Modal";
+import PageLoading from "~/components/PageLoading";
 
 export default function Meetup({ match }) {
   const [meetup, setMeetup] = useState([]);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadMeetup() {
@@ -41,12 +43,14 @@ export default function Meetup({ match }) {
       console.log(meetup);
 
       setMeetup(meetup);
+      setLoading(false);
     }
     loadMeetup();
   }, [match.params.id]);
 
   return (
     <Container>
+      <PageLoading loading={loading} />
       <Modal open={open} setOpen={setOpen} />
       <header>
         <h1>{meetup.title}</h1>
